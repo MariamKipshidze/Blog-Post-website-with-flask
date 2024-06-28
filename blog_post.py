@@ -11,4 +11,4 @@ def index():
 
 @app.route('/user/<int:user_id>')
 def user(user_id):
-    return f'<h1>User {user_id}</h1>'
+    return render_template('user.html', user_id=user_id)
