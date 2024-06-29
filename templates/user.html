@@ -1,1 +1,9 @@
-<h1>User with id: {{ user_id }}</h1>
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="d-flex align-items-center justify-content-center my-4">
+    <div class="badge badge-info p-3">
+        <h1 class="h2 mb-0">User with ID: <span class="font-weight-bold">{{ user_id }}</span></h1>
+    </div>
+</div>
+{% endblock %}
