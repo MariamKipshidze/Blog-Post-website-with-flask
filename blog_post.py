@@ -14,6 +14,18 @@ def user(user_id):
     return render_template('user.html', user_id=user_id)
 
 
+@app.route('/subscribe', methods=['GET'])
+def subscribe():
+    title = 'Subscribe to my blog post'
+    return render_template('subscribe.html', title=title)
+
+
+@app.route('/processing_subscription', methods=['POST'])
+def processing_subscription():
+    title = 'Thank you for subscribing to my blog post'
+    return render_template('processing_subscription.html', title=title)
+
+
 # Create custom error pages
 @app.errorhandler(404)
 def page_not_found(e):
