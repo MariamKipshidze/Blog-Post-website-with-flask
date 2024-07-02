@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 
 # Create a Flask Instance
 app = Flask(__name__)
@@ -22,6 +22,7 @@ def subscribe():
 
 @app.route('/processing_subscription', methods=['POST'])
 def processing_subscription():
+    email = request.form['email']
     title = 'Thank you for subscribing to my blog post'
     return render_template('processing_subscription.html', title=title)
 
