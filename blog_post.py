@@ -1,7 +1,10 @@
 from flask import Flask, render_template, request
 
+from forms import EmailForm
+
 # Create a Flask Instance
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'secret'
 
 
 @app.route('/')
@@ -25,6 +28,21 @@ def processing_subscription():
     email = request.form['email']
     title = 'Thank you for subscribing to my blog post'
     return render_template('processing_subscription.html', title=title)
+
+
+@app.route('/processing_subscription_with_wtf', methods=['GET', 'POST'])
+def processing_subscription_with_wtf():
+    email = None
+    form = EmailForm()
+    if form.validate_on_submit():
+        email = form.email.data
+        form.email.data = ''
+
+    return render_template(
+        'processing_subscription_with_wtf.html',
+        form=form,
+        email=email
+    )
 
 
 # Create custom error pages

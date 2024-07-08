@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Email Subscription</title>
+    </head>
+    <body>
+    {% if email %}
+        <h1>Thank you for subscribing to my blog post</h1>
+        <h2>{{ email }}</h2>
+    {% else %}
+        <p>Leave us your email</p>
+        <form action="/processing_subscription_with_wtf" method="post">
+            {{ form.hidden_tag() }}
+            {{ form.email.label }}
+            {{ form.email() }}
+            <br/>
+            {{ form.submit() }}
+        </form>
+    {% endif %}
+    </body>
+    </html>
+{% endblock %}
