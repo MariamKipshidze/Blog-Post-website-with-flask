@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, flash
 
 from forms import EmailForm
 
@@ -37,6 +37,7 @@ def processing_subscription_with_wtf():
     if form.validate_on_submit():
         email = form.email.data
         form.email.data = ''
+        flash("Submitted successfully")
 
     return render_template(
         'processing_subscription_with_wtf.html',
