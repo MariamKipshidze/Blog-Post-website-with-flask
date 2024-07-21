@@ -1,10 +1,27 @@
 from flask import Flask, render_template, request, flash
+from flask_sqlalchemy import SQLAlchemy
+from datetime import datetime
 
 from forms import EmailForm
 
 # Create a Flask Instance
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'secret'
+with app.app_context():
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///blog.db'
+    app.config['SECRET_KEY'] = 'secret'
+# Initialize the database
+db = SQLAlchemy(app)
+
+
+# Create Model
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(80), nullable=False)
+    email = db.Column(db.String(120), unique=True, nullable=False)
+    date_added = db.Column(db.DateTime, default=datetime.utcnow)
+
+    def __repr__(self):
+        return '<User %r>' % self.name
 
 
 @app.route('/')
