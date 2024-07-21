@@ -1,13 +1,122 @@
-h1 {
-    color: darkblue;
-    font-size: 60px;
+/* Define a color palette for consistency */
+:root {
+    --primary-color: #34495e; /* Midnight Blue */
+    --secondary-color: #8e44ad; /* Wisteria */
+    --background-color: #ecf0f1; /* Clouds */
+    --font-color: #2c3e50; /* Wet Asphalt */
+    --accent-color: #e74c3c; /* Alizarin */
+    --button-hover-color: #c0392b; /* Pomegranate */
+    --font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* Universal Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-    background: antiquewhite;
+    background: var(--background-color);
+    font-family: var(--font-family);
+    color: var(--font-color);
+    line-height: 1.6;
+    padding: 20px;
 }
 
-#demo{
-    font-size: 12px;
-    color: purple;
+/* Header Styles */
+h1 {
+    color: var(--primary-color);
+    font-size: 60px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Paragraph Styles */
+p {
+    margin-bottom: 20px;
+}
+
+/* Styling for the #demo element */
+#demo {
+    font-size: 14px;
+    color: var(--secondary-color);
+    border: 1px solid var(--primary-color);
+    padding: 10px;
+    background: rgba(142, 68, 173, 0.1); /* Light Wisteria Background */
+    border-radius: 5px;
+}
+
+/* Add some hover effects for links */
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--accent-color);
+}
+
+/* Add a navigation bar */
+nav {
+    background: var(--primary-color);
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+}
+
+nav ul li {
+    margin: 0 10px;
+}
+
+nav ul li a {
+    color: white;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: var(--accent-color);
+}
+
+/* Add some styles for buttons */
+button {
+    background: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+button:hover {
+    background: var(--button-hover-color);
+}
+
+/* Media Queries for Responsive Design */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 40px;
+    }
+
+    body {
+        padding: 10px;
+    }
+
+    #demo {
+        font-size: 12px;
+    }
+
+    nav ul {
+        flex-direction: column;
+        text-align: center;
+    }
 }
