@@ -1,8 +1,8 @@
-from flask import Flask, render_template, request, flash
+from flask import Flask, render_template, request, flash, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
-from forms import EmailForm
+from forms import EmailForm, UserForm
 
 # Create a Flask Instance
 app = Flask(__name__)
@@ -27,6 +27,22 @@ class User(db.Model):
 @app.route('/')
 def index():
     return render_template('index.html')
+
+
+@app.route('/user/add', methods=['GET', 'POST'])
+def add_user():
+    form = UserForm()
+    if form.validate_on_submit():
+        # Process form data here
+        username = form.username.data
+        email = form.email.data
+
+        # Create a new user
+        new_user = User(name=username, email=email)
+        db.session.add(new_user)
+        db.session.commit()
+        return redirect(url_for('success'))
+    return render_template('add_user.html', form=form)
 
 
 @app.route('/user/<int:user_id>')
@@ -72,3 +88,8 @@ def page_not_found(e):
 @app.errorhandler(500)
 def internal_server_error(e):
     return render_template('500.html'), 500
+
+
+@app.route('/success')
+def success():
+    return render_template('success.html'), 200
