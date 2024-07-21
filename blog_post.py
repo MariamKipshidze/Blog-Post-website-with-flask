@@ -28,6 +28,11 @@ def add_user():
     return render_template('add_user.html', form=form)
 
 
+@app.route('/users', methods=['GET'])
+def users():
+    return render_template("users.html", users=User.query.all())
+
+
 @app.route('/user/<int:user_id>')
 def user(user_id):
     return render_template('user.html', user_id=user_id)
