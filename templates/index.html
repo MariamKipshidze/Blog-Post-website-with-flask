@@ -1,10 +1,19 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="jumbotron text-center bg-primary text-white py-5">
+<style>
+    .jumbotron-custom {
+        background: linear-gradient(135deg, #f8a5c2, #f78fb3);
+        color: #ffffff;
+    }
+</style>
+<div class="jumbotron jumbotron-fluid text-center jumbotron-custom py-5">
     <div class="container">
         <h1 class="display-4">Welcome to Our Blog</h1>
         <p class="lead">Discover insights, stories, and more from our latest posts.</p>
+        <hr class="my-4">
+        <p class="mb-0">Stay tuned for updates and join our community!</p>
+        <a class="btn btn-light btn-lg mt-3" href="#latest-posts" role="button">Explore Latest Posts</a>
     </div>
 </div>
 {% endblock %}
